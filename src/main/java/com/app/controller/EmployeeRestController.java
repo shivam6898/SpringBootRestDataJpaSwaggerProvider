@@ -24,9 +24,11 @@ public class EmployeeRestController {
 	@Autowired
 	private IEmployeeService service;
 
-	//save employee
-
-	//localhost:8081/rest/employee/save   
+	
+	/*   save employee
+	 *   localhost:8081/rest/employee/save   
+	 *    { "empName":"testname", "empSal":"100000" }
+	 */
 	@PostMapping("/save")
 	public ResponseEntity<String> saveEmployee(@RequestBody Employee employee){
 		ResponseEntity<String> resp=null;
