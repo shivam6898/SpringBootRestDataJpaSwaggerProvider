@@ -79,7 +79,7 @@ public class EmployeeRestController {
 
 
 
-	//4. update data
+	//4. update employee
 	@PutMapping("/update")
 	public ResponseEntity<String> update(@RequestBody Employee employee){
 		ResponseEntity<String> resp=null;
