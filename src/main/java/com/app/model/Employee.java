@@ -24,6 +24,7 @@ public class Employee {
 	@Id
 	@GeneratedValue
 	private Integer empId;
-	private String empName;
+	private String empLastname;
+	private String empFirstname;
 	private Double empSal;
 }

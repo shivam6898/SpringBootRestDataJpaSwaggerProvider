@@ -2,7 +2,8 @@ package com.app.service;
 import java.util.List;
 import java.util.Optional;
 import com.app.model.Employee;
-public interface IEmployeeService {
+import com.app.repo.EmployeeRepository;
+public interface IEmployeeService  {
 	public Integer saveEmployee(Employee e);
 	public void updateEmployee(Employee e);
 	public void deleteEmployee(Integer id);

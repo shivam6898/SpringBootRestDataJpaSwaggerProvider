@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.model.Employee;
+import com.app.repo.EmployeeRepository;
 import com.app.service.IEmployeeService;
 
 @RestController
@@ -23,6 +24,10 @@ public class EmployeeRestController {
 
 	@Autowired
 	private IEmployeeService service;
+	
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
 
 	
 	/*   save employee
@@ -46,13 +51,13 @@ public class EmployeeRestController {
      //get all employees
 	@GetMapping("/getall")
 	public ResponseEntity<?>  getAllEmployees(){
-		ResponseEntity<?> resp =null;
-		List<Employee> list=service.getAllEmployees();
-		if(list==null && list.isEmpty() ) {
+		 ResponseEntity<?> resp =null;
+		List<Employee> emplist=service.getAllEmployees();
+		if(emplist==null && emplist.isEmpty() ) {
 			String msg="NO DATA FOUND";
 			resp=new ResponseEntity<String>(msg,HttpStatus.NO_CONTENT);
 		}else {
-			resp=new ResponseEntity<List<Employee>>(list, HttpStatus.OK);
+			resp=new ResponseEntity<List<Employee>>(emplist, HttpStatus.OK);
 		}
 
 		return resp;
@@ -95,7 +100,26 @@ public class EmployeeRestController {
 		return resp;
 	}
 	
+	// find employee by first name
+	@GetMapping("/getbyfirstname/{empFirstName}")
+	  private List<Employee> findByFirstname(@PathVariable String empFirstName){
+		List<Employee> emp= employeeRepository.findByempFirstname(empFirstName);
+		return emp;
+	  }
 	
 	
-
+	@GetMapping("/getbyfirstnameIs/{empFirstName}")
+	  private List<Employee> findByFirstnameIs(@PathVariable String empFirstName){
+		List<Employee> emp= employeeRepository.findByempFirstnameIs(empFirstName);
+		return emp;
+	  }
+	 
+	
+	//find employee by first and lastname 
+	@GetMapping("/getbyfirstnameandlastname/{empFirstName}/{empLastname}")
+	  private List<Employee> findByFirstnameandlastname(@PathVariable String empLastname ,@PathVariable String empFirstName){
+		List<Employee> emp= employeeRepository.findByEmpLastnameAndEmpFirstname(empLastname, empFirstName);
+		return emp;
+	  }
+	
 }
