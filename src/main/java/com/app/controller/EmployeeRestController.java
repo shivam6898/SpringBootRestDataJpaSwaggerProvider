@@ -122,4 +122,10 @@ public class EmployeeRestController {
 		return emp;
 	  }
 	
+	
+	@GetMapping("/getallactive")
+	private List<Employee> getAllActiveEmployee() {
+		return employeeRepository.findByActiveTrue();
+	}
+	
 }
