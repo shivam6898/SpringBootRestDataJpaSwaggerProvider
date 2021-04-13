@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.model.Employee;
@@ -126,6 +127,13 @@ public class EmployeeRestController {
 	@GetMapping("/getallactive")
 	private List<Employee> getAllActiveEmployee() {
 		return employeeRepository.findByActiveTrue();
+	}
+	
+	
+	@GetMapping("/getbyemail/{email}")
+	private  ResponseEntity<String> findEmployeeByEmail(@PathVariable String email) {
+		Employee emp=employeeRepository.findByemail(email);
+		return new ResponseEntity<String>(emp.toString(),HttpStatus.OK);
 	}
 	
 }

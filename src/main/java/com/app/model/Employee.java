@@ -8,12 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @XmlRootElement
@@ -22,6 +22,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 
 /*
  * { "empId": 4, "empLastname": "testln", "empFirstname": "testfn", "empSal":
@@ -42,4 +43,5 @@ public class Employee {
 	private Date createdAt;
 	private Date updatedAt;
 	private Boolean active;
+	private String email;
 }
